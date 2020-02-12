@@ -3,13 +3,11 @@ package mx.conacyt.reports;
 import java.io.Serializable;
 import java.util.Set;
 
-import mx.conacyt.reports.annotations.Sheet;
 import mx.conacyt.reports.annotations.SheetColumn;
 
 /**
  * A DTO representing a user, with his authorities.
  */
-@Sheet
 class UserDto implements Serializable {
 
     /**
