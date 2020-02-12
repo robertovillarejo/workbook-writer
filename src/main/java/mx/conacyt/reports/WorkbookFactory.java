@@ -97,7 +97,7 @@ public class WorkbookFactory {
                 Method method = clazz.getMethod(getMethodName);
                 methods.add(method);
             } catch (NoSuchMethodException | SecurityException e) {
-                log.debug("No get method for property {} in class {}", field.getName(), clazz.getName());
+                log.warn("No get method for property {} in class {}", field.getName(), clazz.getName());
             }
         }
         return methods;
