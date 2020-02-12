@@ -1,7 +1,7 @@
 /*
  *  
  * The MIT License (MIT)
- * Copyright (c) 2018 Roberto Villarejo Martínez
+ * Copyright (c) 2020 Roberto Villarejo Martínez
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface SheetColumn {
 
-    public String title() default "";
+    public String value() default "";
 
 }

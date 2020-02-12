@@ -15,8 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import junit.framework.TestCase;
-import mx.conacyt.reports.SheetDataSupplier;
-import mx.conacyt.reports.WorkbookWriter;
 
 public class WorkbookTest extends TestCase {
 
@@ -41,7 +39,6 @@ public class WorkbookTest extends TestCase {
         converter.addData(dataSupplier);
         SXSSFWorkbook wb = converter.getWorkbook();
         Path path = Files.createTempFile(null, ".xlsx");
-        System.out.println(path.toAbsolutePath());
         OutputStream os = new FileOutputStream(path.toFile());
         wb.write(os);
     }

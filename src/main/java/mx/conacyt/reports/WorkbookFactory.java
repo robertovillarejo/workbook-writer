@@ -1,7 +1,7 @@
 /*
  *  
  * The MIT License (MIT)
- * Copyright (c) 2018 Roberto Villarejo Martínez
+ * Copyright (c) 2020 Roberto Villarejo Martínez
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -115,8 +115,8 @@ public class WorkbookFactory {
 
     public static String buildHeaderFromAnnotatedProperty(Field field) {
         SheetColumn annotation = field.getAnnotation(SheetColumn.class);
-        if (!"".equals(annotation.title())) {
-            return annotation.title();
+        if (!"".equals(annotation.value())) {
+            return annotation.value();
         } else {
             return camelCaseToHumanReadable(field.getName());
         }

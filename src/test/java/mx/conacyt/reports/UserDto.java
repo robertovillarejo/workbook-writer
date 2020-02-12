@@ -10,14 +10,14 @@ import mx.conacyt.reports.annotations.SheetColumn;
  * A DTO representing a user, with his authorities.
  */
 @Sheet
-public class UserDto implements Serializable {
+class UserDto implements Serializable {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
-    @SheetColumn(title = "ID")
+    @SheetColumn("ID")
     private String id;
 
     @SheetColumn
@@ -56,7 +56,6 @@ public class UserDto implements Serializable {
     private Integer followers;
 
     public UserDto() {
-        // Empty constructor needed for MapStruct.
     }
 
     public String getId() {
