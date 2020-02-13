@@ -36,27 +36,29 @@ import org.springframework.data.domain.Sort;
 
 public class SheetDataSupplier<T> implements Supplier<Slice<T>> {
 
+    private static int DEFAULT_PAGE_NUMBER = 0;
+
+    private static int DEFAULT_SIZE_PAGE = 100;
+
     private Function<Pageable, Page<T>> function;
 
     private boolean hasNext = false;
 
     private Pageable pageable;
 
-    private int pageNumber = 0;
-
-    private int sizePage = 100;
-
-    private Sort sort;
-
     public SheetDataSupplier(Function<Pageable, Page<T>> function) {
         this.function = function;
-        this.pageable = PageRequest.of(pageNumber, sizePage);
+        this.pageable = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_SIZE_PAGE);
     }
 
     public SheetDataSupplier(Sort sort, Function<Pageable, Page<T>> function) {
         this.function = function;
-        this.sort = sort;
-        this.pageable = PageRequest.of(pageNumber, sizePage, sort);
+        this.pageable = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_SIZE_PAGE, sort);
+    }
+
+    public SheetDataSupplier(Pageable pageable, Function<Pageable, Page<T>> function) {
+        this.function = function;
+        this.pageable = pageable;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class SheetDataSupplier<T> implements Supplier<Slice<T>> {
         if (pageable.getPageNumber() == 0 || hasNext) {
             Page<T> page = function.apply(pageable);
             hasNext = page.hasNext();
-            pageable = PageRequest.of(pageable.getPageNumber() + 1, sizePage, sort);
+            pageable = pageable.next();
             return new SliceImpl<>(page.getContent(), pageable, page.hasNext());
         }
         return null;

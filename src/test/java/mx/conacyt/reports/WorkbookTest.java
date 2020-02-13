@@ -30,7 +30,7 @@ public class WorkbookTest extends TestCase {
 
     @Test
     public void testWorkbookCreation() throws IOException {
-        SheetDataSupplier<UserDto> dataSupplier = new SheetDataSupplier<>(Sort.unsorted(), (Pageable pageable) -> {
+        SheetDataSupplier<UserDto> dataSupplier = new SheetDataSupplier<>((Pageable pageable) -> {
             ArrayList<UserDto> content = new ArrayList<>();
             content.add(createUserDto());
             return new PageImpl<UserDto>(content);
